@@ -4,15 +4,19 @@ import './App.css'
 class Select extends React.Component{
     constructor(props){
         super(props)
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange (event) {
+        this.props.update(event.target.value, this.props.book)
     }
     render(){
         return(
             <div className="book-shelf-changer">
-                <select>
+                <select value={this.props.value} onChange={this.handleChange} >
                   <option value="move" disabled>Move to...</option>
-                  <option value="currentlyReading" onChange={this.props.update('currentlyReading',this.props.book)} >Currently Reading</option>
-                  <option value="wantToRead" onChange={this.props.update('wantToRead', this.props.book)} >Want to Read</option>
-                  <option value="read" onChange={this.props.update('read', this.props.book)} >Read</option>
+                  <option value="currentlyReading">Currently Reading</option>
+                  <option value="wantToRead" >Want to Read</option>
+                  <option value="read" >Read</option>
                   <option value="none" >None</option>
                 </select>
               </div>

@@ -19,6 +19,8 @@ class Shelf extends React.Component{
             currentlyReading:nextBooks.books.filter(book => book.shelf === 'currentlyReading'),
             wantToRead:nextBooks.books.filter(book => book.shelf === 'wantToRead'),
             read:nextBooks.books.filter(book => book.shelf === 'read')
+        },()=>{
+            console.log(this.state.currentlyReading)
         })
         
     }
@@ -29,6 +31,9 @@ class Shelf extends React.Component{
             <Book key={index} book={book} />
         )
     }*/
+    updateBooksArray () {
+        
+    }
     render(){
         return(
             <div className="bookshelf">
