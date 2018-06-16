@@ -11,7 +11,10 @@ class Book extends React.Component{
     }
     updateBook (type, book) {
         console.log(type, book)
-        BooksAPI.update(book, type)
+        this.props.updateBook(type, book)
+        BooksAPI.update(book, type).then(()=>{
+
+        })
     }
     render(){
         return (
@@ -20,8 +23,8 @@ class Book extends React.Component{
               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}></div>
               <Select update={this.updateBook} book={this.props.book} value={this.props.book.shelf} />
             </div>
-            <div className="book-title">{this.props.book.title}</div>
-            <div className="book-authors">{this.props.book.authors}</div>
+            <div className="book-title">{this.props.book.title ? this.props.book.title : '书名不详'}</div>
+            <div className="book-authors">{this.props.book.authors ? this.props.book.authors : '暂无作者'}</div>
           </div>
         )
     }
