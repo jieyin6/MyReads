@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import Shelf from './shelf'
-import './App.css'
+import * as BooksAPI from '../BooksAPI'
+import Shelf from './shelf/shelf'
+import '../App.css'
 
 class ShowBook extends React.Component {
     constructor(props){

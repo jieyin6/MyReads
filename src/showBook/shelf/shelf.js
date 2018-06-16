@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Book from './book'
-import './App.css'
-import * as BooksAPI from './BooksAPI'
+import '../../App.css'
 
 class Shelf extends React.Component{
     constructor(props){

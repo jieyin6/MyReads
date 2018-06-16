@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Select from './select'
-import './App.css'
-import * as BooksAPI from './BooksAPI'
+import '../../App.css'
 
 class Book extends React.Component{
     constructor(props){
