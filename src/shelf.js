@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Book from './book'
 import './App.css'
-import BooksApp from './App';
+import * as BooksAPI from './BooksAPI'
 
 class Shelf extends React.Component{
     constructor(props){
@@ -16,7 +16,7 @@ class Shelf extends React.Component{
        this.updateBookInshelf = this.updateBookInshelf.bind(this)
     }
     componentWillReceiveProps (nextBooks) {
-       this.handleArray(nextBooks)
+       this.handleArray(nextBooks.books)
     }
    /* renderBook (books) {
         console.log(books)
@@ -26,15 +26,19 @@ class Shelf extends React.Component{
         )
     }*/
     handleArray (nextBooks) {
+        console.log(nextBooks)
         this.setState({
-            currentlyReading:nextBooks.books.filter(book => book.shelf === 'currentlyReading'),
-            wantToRead:nextBooks.books.filter(book => book.shelf === 'wantToRead'),
-            read:nextBooks.books.filter(book => book.shelf === 'read')
+            currentlyReading:nextBooks.filter(book => book.shelf === 'currentlyReading'),
+            wantToRead:nextBooks.filter(book => book.shelf === 'wantToRead'),
+            read:nextBooks.filter(book => book.shelf === 'read')
         })
     }
     updateBookInshelf (type, book) {
-        BooksApp.update(type, book).then(res => {
-            this.handleArray(res)
+        BooksAPI.update(type, book).then(res => {
+            BooksAPI.getAll().then( data => {
+                console.log(data)
+                this.handleArray(data)
+            })
         })
     }
     render(){

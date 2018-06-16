@@ -11,10 +11,7 @@ class Book extends React.Component{
     }
     updateBook (type, book) {
         console.log(type, book)
-        this.props.updateBook(type, book)
-        BooksAPI.update(book, type).then(()=>{
-
-        })
+        this.props.updateBookInshelf(type, book)
     }
     render(){
         return (
