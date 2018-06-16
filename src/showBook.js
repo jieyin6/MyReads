@@ -9,23 +9,29 @@ class ShowBook extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            shelfName:['Currently Reading', 'Want to Read', 'Read'],
-            books:[]
+            currentlyReading:[],
+            wantToRead:[],
+            read:[]
         }
         this.updateShelf = this.updateShelf.bind(this)
+        this.handleArray = this.handleArray.bind(this)
     }
     componentDidMount () {
+        this.handleArray()
+    }
+    handleArray (){
         BooksAPI.getAll().then((data)=>{
+            console.log(data)
             this.setState({
-              books:data
+                currentlyReading:data.filter(book => book.shelf === 'currentlyReading'),
+                wantToRead:data.filter(book => book.shelf === 'wantToRead'),
+                read:data.filter(book => book.shelf === 'read')
             })
           })
     }
-    updateShelf () {
-        BooksAPI.getAll().then(data => {
-            this.setState({
-                books:data
-            })
+    updateShelf (type, book) {
+        BooksAPI.update(type, book).then(res => {
+            this.handleArray()
         })
     }
     render(){
@@ -35,7 +41,9 @@ class ShowBook extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              {this.state.shelfName.map((shelf, index) => <Shelf updateShelf={this.updateShelf} key={index} name={shelf} books={this.state.books} /> )}
+              <Shelf  updateShelf={this.updateShelf} name='Currently Reading' books={this.state.currentlyReading} /> 
+              <Shelf  updateShelf={this.updateShelf} name='Want to Read' books={this.state.wantToRead} /> 
+              <Shelf  updateShelf={this.updateShelf} name='read' books={this.state.read} /> 
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
             </div>
