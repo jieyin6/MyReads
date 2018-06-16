@@ -10,16 +10,8 @@ class Shelf extends React.Component{
         this.state = {
            
         }
-       // this.renderBook = this.renderBook.bind(this)
        this.updateBookInshelf = this.updateBookInshelf.bind(this)
     }
-   /* renderBook (books) {
-        console.log(books)
-        books.map((book,index) => 
-            
-            <Book key={index} book={book} />
-        )
-    }*/
     updateBookInshelf (type, book) {
        this.props.updateShelf(type, book)
     }

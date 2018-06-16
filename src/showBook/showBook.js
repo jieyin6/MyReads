@@ -29,8 +29,9 @@ class ShowBook extends React.Component {
             })
           })
     }
-    updateShelf (type, book) {
-        BooksAPI.update(type, book).then(res => {
+    updateShelf (book, type) {
+        console.log(type,book)
+        BooksAPI.update(book, type).then(res => {
             this.handleArray()
         })
     }

@@ -7,7 +7,7 @@ class Select extends React.Component{
         this.handleChange = this.handleChange.bind(this)
     }
     handleChange (event) {
-        this.props.update(event.target.value, this.props.book)
+        this.props.update(this.props.book, event.target.value)
     }
     render(){
         return(
